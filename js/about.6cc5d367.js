@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{8125:function(t,n,a){"use strict";a.r(n);var o=a("7a23"),e={class:"donate"},s=Object(o["g"])("a",{class:"btn btn-primary",href:"https://www.donationalerts.com/r/sokolas"},"Donate",-1);function c(t,n){return Object(o["p"])(),Object(o["d"])("div",e,[s])}const r={};r.render=c;n["default"]=r}}]);
-//# sourceMappingURL=about.ac3e48bb.js.map
+//# sourceMappingURL=about.6cc5d367.js.map
