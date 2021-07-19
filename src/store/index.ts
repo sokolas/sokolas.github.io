@@ -9,7 +9,8 @@ export default createStore({
     loggedIn: false,
     sid: window.localStorage.getItem('sid'),
     loading: false,
-    webhook: null
+    webhook: null,
+    editing: false
   },
   getters: {
     hasSid(state) {
@@ -42,13 +43,18 @@ export default createStore({
       window.localStorage.removeItem('sid')
     },
     startLoading(state) {
+      console.log('loading')
       state.loading = true
     },
     stopLoading(state) {
+      console.log('loaded')
       state.loading = false
     },
     setWebhook(state, webhook) {
       state.webhook = webhook
+    },
+    editing(state, editing) {
+      state.editing = editing
     }
   },
   actions: {
@@ -65,6 +71,8 @@ export default createStore({
           console.log(response.status)
           if (response.status === 200) {
             commit('logIn', response.data)
+            commit('setWebhook', response.data.webhook)
+            commit('setError', null)
             // response.data
           }
           commit('stopLoading')
@@ -86,6 +94,8 @@ export default createStore({
         console.log(response.status)
         if (response.status === 200) {
           commit('setWebhook', webhook)
+          commit('editing', false)
+          commit('setError', null)
           // response.data
         }
         commit('stopLoading')

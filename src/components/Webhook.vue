@@ -1,6 +1,6 @@
 <template>
-    <input type="text" class="form-control" placeholder="Webhook" aria-label="Webhook" v-model="webhook"/>
-    <button class="btn btn-primary" type="button" v-on:click="addWebhook">save</button>
+    <input type="text" class="form-control" placeholder="Webhook" aria-label="Webhook" v-model="webhook" v-on:input="textChanged"/>
+    <button v-bind:class="{'btn': true, 'btn-default': !editing, 'btn-primary': editing}" type="button" v-on:click="addWebhook">save</button>
     <button class="btn btn-danger" type="button" v-on:click="deleteWebhook">delete</button>
 </template>
 
@@ -11,7 +11,9 @@
     export default defineComponent({
         setup() {
             const store = useStore()
+            store.commit('editing', false)
             const getHook = computed(() => store.state.webhook)
+            const editing = computed(() => store.state.editing)
             const webhook = ref(store.state.webhook)
             console.log(webhook.value)
             function addWebhook() {
@@ -21,7 +23,11 @@
                 webhook.value = null
                 store.dispatch('setWebhook', null)
             }
-            return { webhook, getHook, addWebhook, deleteWebhook }
+            function textChanged() {
+                console.log('text changed')
+                store.commit('editing', true)
+            }
+            return { webhook, getHook, addWebhook, deleteWebhook, textChanged, editing }
         },
         name: 'Webhook'
     })
