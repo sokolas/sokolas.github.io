@@ -4,7 +4,7 @@ import { url } from '@/cfg'
 
 export default createStore({
   state: {
-    error: {},
+    error: null,
     user: null,
     loggedIn: false,
     sid: window.localStorage.getItem('sid'),
