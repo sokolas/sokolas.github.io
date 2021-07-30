@@ -1,5 +1,6 @@
 <template>
     <input type="text" class="form-control" placeholder="Webhook" aria-label="Webhook" v-model="webhook" v-on:input="textChanged"/>
+    <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="blank">Making a Webhook</a>
     <button v-bind:class="{'btn': true, 'btn-default': !editing, 'btn-primary': editing}" type="button" v-on:click="addWebhook">save</button>
     <button class="btn btn-danger" type="button" v-on:click="deleteWebhook">delete</button>
 </template>
